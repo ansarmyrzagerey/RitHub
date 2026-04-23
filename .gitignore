@@ -51,4 +51,11 @@ temp/
 # Documentation/Notes (auto-generated)
 *.md
 !README.md
-!description.md
+!ARCHITECTURE.md
+!CHANGELOG.md
+!CONTRIBUTING.md
+!SECURITY.md
+
+# Allow .env.example files
+!.env.example
+!backend/.env.example
