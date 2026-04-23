@@ -55,6 +55,7 @@ temp/
 !CHANGELOG.md
 !CONTRIBUTING.md
 !SECURITY.md
+!.github/**/*.md
 
 # Allow .env.example files
 !.env.example
