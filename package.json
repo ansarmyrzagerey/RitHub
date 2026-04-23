@@ -1,0 +1,30 @@
+{
+  "name": "artifact-comparator",
+  "version": "1.0.0",
+  "description": "Web application for conducting human-subject studies to evaluate software engineering artifacts",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:frontend": "cd frontend && npm start",
+    "build": "cd frontend && npm run build",
+    "start": "cd backend && npm start",
+    "docker:build": "docker-compose build",
+    "docker:up": "docker-compose up",
+    "docker:down": "docker-compose down"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "concurrently": "^8.2.2",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "adm-zip": "^0.5.16",
+    "axios": "^1.12.2",
+    "csv-writer": "^1.6.0",
+    "dotenv": "^17.2.3",
+    "openai": "^6.9.1",
+    "qrcode.react": "^4.2.0",
+    "recharts": "^3.5.0",
+    "xlsx": "^0.18.5"
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "templates": [
+    {
+      "id": "readability",
+      "name": "Readability",
+      "type": "predefined",
+      "description": "How easy is it to read and understand the code?",
+      "defaultScale": "likert_5",
+      "category": "code_quality"
+    },
+    {
+      "id": "correctness",
+      "name": "Correctness",
+      "type": "predefined",
+      "description": "Does the code correctly implement the intended functionality?",
+      "defaultScale": "likert_5",
+      "category": "functionality"
+    },
+    {
+      "id": "completeness",
+      "name": "Completeness",
+      "type": "predefined",
+      "description": "Does the code cover all necessary cases and requirements?",
+      "defaultScale": "likert_5",
+      "category": "functionality"
+    },
+    {
+      "id": "efficiency",
+      "name": "Efficiency",
+      "type": "predefined",
+      "description": "How efficient is the code in terms of performance and resource usage?",
+      "defaultScale": "likert_5",
+      "category": "performance"
+    }
+  ],
+  "scales": [
+    {
+      "id": "likert_5",
+      "name": "5-Point Likert Scale",
+      "description": "Strongly Disagree to Strongly Agree",
+      "type": "likert",
+      "min": 1,
+      "max": 5,
+      "labels": {
+        "1": "Strongly Disagree",
+        "2": "Disagree",
+        "3": "Neutral",
+        "4": "Agree",
+        "5": "Strongly Agree"
+      }
+    },
+    {
+      "id": "stars_5",
+      "name": "5-Star Rating",
+      "description": "1 to 5 stars",
+      "type": "stars",
+      "min": 1,
+      "max": 5,
+      "labels": {
+        "1": "Very Poor",
+        "2": "Poor",
+        "3": "Average",
+        "4": "Good",
+        "5": "Excellent"
+      }
+    },
+    {
+      "id": "binary",
+      "name": "Binary (Yes/No)",
+      "description": "Simple yes or no response",
+      "type": "binary",
+      "min": 0,
+      "max": 1,
+      "labels": {
+        "0": "No",
+        "1": "Yes"
+      }
+    },
+    {
+      "id": "numeric",
+      "name": "Numeric (0-100)",
+      "description": "Numeric score from 0 to 100",
+      "type": "numeric",
+      "min": 0,
+      "max": 100,
+      "labels": {}
+    }
+  ]
+}

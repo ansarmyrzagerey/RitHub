@@ -1,0 +1,5 @@
+# Middleware directory
+# Add your middleware here:
+# - auth.js
+# - validation.js
+# - upload.js

@@ -1,0 +1,7 @@
+# Routes directory
+# Add your route files here:
+# - auth.js
+# - users.js  
+# - artifacts.js
+# - studies.js
+# - evaluations.js

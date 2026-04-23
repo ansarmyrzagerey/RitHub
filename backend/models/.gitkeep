@@ -1,0 +1,7 @@
+# Models directory
+# Add your database models here:
+# - User.js
+# - Artifact.js
+# - Study.js
+# - Evaluation.js
+# - Participant.js

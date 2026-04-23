@@ -1,0 +1,7 @@
+# Git attributes file to ensure consistent line endings across platforms
+# This prevents Windows users from accidentally committing shell scripts with CRLF
+
+# Shell scripts must always use LF (Unix) line endings
+*.sh text eol=lf
+
+
