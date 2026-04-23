@@ -59,7 +59,16 @@ for migration in "${migrations[@]}"; do
     
     if [ -f "$migration_file" ]; then
         echo "→ Applying: $migration"
-        psql -v ON_ERROR_STOP=0 -U "$POSTGRES_USER" -d "$POSTGRES_DB" -f "$migration_file" 2>&1 | grep -E "(CREATE|ALTER|INSERT|ERROR|NOTICE:|already exists)" || true
+        # Pass admin credentials as psql variables for the admin seed migration
+        if [ "$migration" = "003_add_admin_user.sql" ]; then
+            psql -v ON_ERROR_STOP=0 \
+                 -v admin_username="${ADMIN_USERNAME:-}" \
+                 -v admin_email="${ADMIN_EMAIL:-}" \
+                 -v admin_password="${ADMIN_PASSWORD:-}" \
+                 -U "$POSTGRES_USER" -d "$POSTGRES_DB" -f "$migration_file" 2>&1 | grep -E "(CREATE|ALTER|INSERT|ERROR|NOTICE:|already exists)" || true
+        else
+            psql -v ON_ERROR_STOP=0 -U "$POSTGRES_USER" -d "$POSTGRES_DB" -f "$migration_file" 2>&1 | grep -E "(CREATE|ALTER|INSERT|ERROR|NOTICE:|already exists)" || true
+        fi
     else
         echo "⚠ Warning: Migration file not found: $migration"
     fi

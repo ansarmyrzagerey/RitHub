@@ -1,12 +1,16 @@
 -- Migration: Add Default Admin User
 -- Description: Creates a default admin user account for fresh installations
--- This makes first-time setup easier - change password after first login!
+-- Admin credentials are read from environment variables:
+--   ADMIN_USERNAME, ADMIN_EMAIL, ADMIN_PASSWORD
+-- See .env.example for placeholder values.
 
--- Insert default admin user
--- Email: admin@rithub.com
--- Username: admin
--- Password: Admin@2024
--- Password hash generated using bcrypt with 10 rounds
+-- Enable pgcrypto for password hashing
+CREATE EXTENSION IF NOT EXISTS pgcrypto;
+
+-- Read credentials from psql variables passed via -v flags from run-migrations.sh.
+-- The password is hashed using pgcrypto's crypt() with a bcrypt (bf) salt.
+-- Fallbacks are provided for backward compatibility.
+
 INSERT INTO users (
   email,
   username,
@@ -19,9 +23,12 @@ INSERT INTO users (
   created_at,
   updated_at
 ) VALUES (
-  'admin@rithub.com',
-  'admin',
-  '$2a$10$ApwLtlb54rN.l/kN2BTtru/tS7W9LPo2i.H3dnDKnq.JNAuumlHW2', -- Password: Admin@2024
+  COALESCE(NULLIF(:'admin_email', ''), 'admin@rithub.com'),
+  COALESCE(NULLIF(:'admin_username', ''), 'admin'),
+  crypt(
+    COALESCE(NULLIF(:'admin_password', ''), 'Admin@2024'),
+    gen_salt('bf', 10)
+  ),
   'Platform',
   'Administrator',
   'RitHub',
@@ -35,12 +42,11 @@ ON CONFLICT (email) DO NOTHING;
 -- Verify admin user was created
 DO $$
 BEGIN
-  IF EXISTS (SELECT 1 FROM users WHERE email = 'admin@rithub.com' AND role = 'admin') THEN
+  IF EXISTS (SELECT 1 FROM users WHERE role = 'admin') THEN
     RAISE NOTICE '========================================';
     RAISE NOTICE '  Default Admin User Created';
     RAISE NOTICE '========================================';
-    RAISE NOTICE 'Email/Username: admin@rithub.com or admin';
-    RAISE NOTICE 'Password: Admin@2024';
+    RAISE NOTICE 'Credentials configured via ADMIN_USERNAME / ADMIN_PASSWORD env vars';
     RAISE NOTICE '';
     RAISE NOTICE '⚠️  IMPORTANT: Change this password after first login!';
     RAISE NOTICE '========================================';
