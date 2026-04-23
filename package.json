@@ -2,6 +2,9 @@
   "name": "artifact-comparator",
   "version": "1.0.0",
   "description": "Web application for conducting human-subject studies to evaluate software engineering artifacts",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
     "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
     "dev:backend": "cd backend && npm run dev",
