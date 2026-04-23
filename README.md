@@ -109,7 +109,7 @@ Deleting a study, quiz, or artifact does not destroy the underlying data; items 
 
 ## Team
 
-Developed as a team for CS319, Bilkent University, Spring 2025.
+Developed as a team for CS319, Bilkent University, Fall 2025.
 
 <!-- TODO: List teammates by name/GitHub handle once permission is confirmed. -->
 
