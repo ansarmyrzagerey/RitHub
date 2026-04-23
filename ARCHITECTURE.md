@@ -1,3 +1,5 @@
+> For setup and usage, see [README.md](./README.md).
+
 # RitHub: Platform Architecture & Features
 
 ## 1. Executive Summary
